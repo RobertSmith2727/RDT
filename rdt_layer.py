@@ -21,7 +21,6 @@ class RDTLayer(object):
         self.dataToSend = ''
         self.currentIteration = 0
         self.lastAckReceived = 0
-        self.lastSeqSent = 0
         self.lastSeqAdded = 0
         self.dataReceived = ""
         self.ackowledgement = -1

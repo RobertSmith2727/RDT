@@ -49,8 +49,10 @@ delayPackets = True
 dataErrors = True
 
 # Create unreliable communication channels
-clientToServerChannel = UnreliableChannel(outOfOrder,dropPackets,delayPackets,dataErrors)
-serverToClientChannel = UnreliableChannel(outOfOrder,dropPackets,delayPackets,dataErrors)
+clientToServerChannel = UnreliableChannel(outOfOrder, dropPackets,
+                                          delayPackets, dataErrors)
+serverToClientChannel = UnreliableChannel(outOfOrder, dropPackets,
+                                          delayPackets, dataErrors)
 
 # Creat client and server that connect to unreliable channels
 client.setSendChannel(clientToServerChannel)
@@ -75,7 +77,6 @@ while True:
     server.processData()
     serverToClientChannel.processData()
 
-
     # show the data received so far
     print("Main--------------------------------------------")
     dataReceivedFromClient = server.getDataReceived()
@@ -88,14 +89,23 @@ while True:
     # time.sleep(0.1)
     # input("Press enter to continue...")
 
-print("countTotalDataPackets: {0}".format(clientToServerChannel.countTotalDataPackets))
-print("countSentPackets: {0}".format(clientToServerChannel.countSentPackets + serverToClientChannel.countSentPackets))
-print("countChecksumErrorPackets: {0}".format(clientToServerChannel.countChecksumErrorPackets))
-print("countOutOfOrderPackets: {0}".format(clientToServerChannel.countOutOfOrderPackets))
-print("countDelayedPackets: {0}".format(clientToServerChannel.countDelayedPackets + serverToClientChannel.countDelayedPackets))
-print("countDroppedDataPackets: {0}".format(clientToServerChannel.countDroppedPackets))
+print("countTotalDataPackets: {0}"\
+      .format(clientToServerChannel.countTotalDataPackets))
+print("countSentPackets: {0}".format(clientToServerChannel.countSentPackets +\
+                                     serverToClientChannel.countSentPackets))
+print("countChecksumErrorPackets: {0}".format(clientToServerChannel.
+                                              countChecksumErrorPackets))
+print("countOutOfOrderPackets: {0}".format(clientToServerChannel.
+                                           countOutOfOrderPackets))
+print("countDelayedPackets: {0}".format(clientToServerChannel.
+                                        countDelayedPackets +
+                                        serverToClientChannel.
+                                        countDelayedPackets))
+print("countDroppedDataPackets: {0}".format(clientToServerChannel.
+                                            countDroppedPackets))
 print("countAckPackets: {0}".format(serverToClientChannel.countAckPackets))
-print("countDroppedAckPackets: {0}".format(serverToClientChannel.countDroppedPackets))
+print("countDroppedAckPackets: {0}".format(serverToClientChannel.
+                                           countDroppedPackets))
 
 print("# segment timeouts: {0}".format(client.countSegmentTimeouts))
 
